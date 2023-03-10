@@ -1,0 +1,54 @@
+version: 2.1
+orbs:
+  node: circleci/node@5.1.0
+  aws-cli: circleci/aws-cli@1.4.0
+  aws-s3: circleci/aws-s3@2.0.0
+
+jobs:
+  build-and-test:
+    executor:
+      name: node/default
+    steps:
+      - checkout
+      - node/install:
+          node-version: '16.13'
+      - run: sudo npm install -g npm@8.1.0
+      - node/install-packages:
+          override-ci-command: npm install
+#      - run:
+#          command: npm run lint
+#      - run:
+#          command: npm run build
+#      - persist_to_workspace:
+#          root: .
+#          paths:
+#            - build/*
+
+  deploy:
+    executor: aws-cli/default
+    steps:
+      - attach_workspace:
+          at: build
+      - aws-cli/setup
+      - aws-s3/sync:
+          arguments: |
+            --acl public-read \
+            --cache-control "max-age=86400"
+          from: build/*
+          to: ${AWS_S3_BUCKET}
+      - run:
+          name: Invalidate CloudFront Cache
+          command: |
+            aws cloudfront create-invalidation --distribution-id ${AWS_CLOUDFRONT_DISTRIBUTION} --paths "/*"
+
+workflows:
+  build-test-deploy:
+    jobs:
+      - build-and-test
+#      - deploy:
+#          context: aws
+#          requires:
+#            - build-and-test
+#          filters:
+#            branches:
+#              only: main
