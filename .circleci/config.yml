@@ -28,7 +28,7 @@ jobs:
     executor: aws-cli/default
     steps:
       - attach_workspace:
-          at: build
+          at: dist
       - aws-cli/setup
       - run:
           name: Deploy artifacts
