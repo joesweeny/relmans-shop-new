@@ -1,11 +1,10 @@
-import React, { useContext } from 'react';
+import React from 'react';
 import styled from 'styled-components';
 import { bool, func } from 'prop-types';
-import { faBars, faShoppingBasket } from '@fortawesome/free-solid-svg-icons';
+import { faBars } from '@fortawesome/free-solid-svg-icons';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 
 import Logo from '../Logo/Logo.jsx';
-import { CheckoutContext } from '../../context/CheckoutContext.jsx';
 
 const ToolbarWrapper = styled.div`
   display: flex;
@@ -51,7 +50,7 @@ const ToolbarWrapper = styled.div`
 
 const Toolbar = (props) => {
   const { basketOpen, clickBasket, clickMenu, menuOpen } = props;
-  const { items } = useContext(CheckoutContext);
+  // const { items } = useContext(CheckoutContext);
   const { innerWidth } = window;
 
   const toggleMenu = () => {
@@ -70,7 +69,7 @@ const Toolbar = (props) => {
     }
   };
 
-  const total = items.reduce((prev, next) => prev + next.count, 0);
+  // const total = items.reduce((prev, next) => prev + next.count, 0);
 
   return (
     <ToolbarWrapper>
@@ -87,18 +86,6 @@ const Toolbar = (props) => {
         role="button"
         tabIndex={0}
       >
-        <span className="fa-layers">
-          <FontAwesomeIcon
-            color={basketOpen ? '#f1943c' : '#ffffff'}
-            icon={faShoppingBasket}
-            size="2x"
-          />
-          {total > 0 ? (
-            <span className="fa-layers-counter fa-layers-top-right fa-3x">
-              {total}
-            </span>
-          ) : null}
-        </span>
       </div>
     </ToolbarWrapper>
   );
