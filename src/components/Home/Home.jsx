@@ -18,7 +18,6 @@ const HomeWrapper = styled.div`
 const Home = () => {
   return (
     <HomeWrapper>
-      <h2>The site is currently down for maintenance and we be live again to take orders on 24th November</h2>
       <ImageCarousel />
       <CategoryDisplay />
       <InformationButtons />
