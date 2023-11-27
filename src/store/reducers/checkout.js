@@ -13,7 +13,7 @@ const addItem = (state, action) => {
     measurement: action.measurement,
     price: action.price,
     total: item === null ? action.price : (item.total += action.price),
-    count: item === null ? 1 : (item.count++),
+    count: item === null ? 1 : (item.count += 1),
   };
 
   return {
