@@ -42,7 +42,7 @@ const CheckoutDate = (props) => {
 
   const dates = (date) => {
     const day = date.getDay();
-    return day !== 0 && day !== 4 && day !== 5 && day !== 6; // Exclude Sundays (0) and Thursdays (4) and Fridays (5) and Saturdays (6)
+    return day !== 0 && day !== 4 && day !== 5; // Exclude Sundays (0) and Thursdays (4) and Fridays (5)
   };
 
   const minDate = new Date(Date.now() + 3600 * 1000 * 24).setHours(11, 0, 0);
