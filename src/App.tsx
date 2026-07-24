@@ -6,6 +6,7 @@ import CategoryContextProvider from './context/CategoryContext';
 import CheckoutContextProvider from './context/CheckoutContext';
 import Dashboard from './components/Dashboard/Dashboard';
 import Toolbar from './components/Toolbar/Toolbar';
+import MaintenanceModal from './components/MaintenanceModal/MaintenanceModal';
 
 const Container = styled.div`
   display: flex;
@@ -21,6 +22,7 @@ const App = () => {
   return (
     <CategoryContextProvider>
       <CheckoutContextProvider>
+        <MaintenanceModal />
         <Container>
           <BrowserRouter>
             <Toolbar

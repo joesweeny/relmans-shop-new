@@ -94,7 +94,7 @@ const AboutUs = () => {
           </ul>
           <p>
             For any enquiries please do not hesitate to call us on{' '}
-            <b>01207 505001</b> or email us on <b>orders@relmans.co.uk.</b>
+            <b>07920068900</b> or email us on <b>orders@relmans.co.uk.</b>
           </p>
         </Section>
       </Card>
